@@ -2,6 +2,8 @@
 
 ![Ui](docs/images/Ui.png)
 
+[![codecov](https://codecov.io/gh/AY2324S1-CS2103T-F08-3/tp/graph/badge.svg?token=BJR49ZPCBU)](https://codecov.io/gh/AY2324S1-CS2103T-F08-3/tp)
+
 * This is **a sample project for Software Engineering (SE) students**.<br>
   Example usages:
   * as a starting point of a course project (as opposed to writing everything from scratch)
