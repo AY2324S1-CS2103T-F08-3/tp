@@ -29,13 +29,13 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/bkjwjason.md)]
 
 * Role: Team Lead
-* Responsibilities: UI, Java and Integration Expert 
+* Responsibilities: UI, Java and Integration Expert
 
 ### Chang Xian
 
 <img src="images/euchangxian.png" width="200px">
 
-[[github](http://github.com/euchangxian)] 
+[[github](http://github.com/euchangxian)]
 [[portfolio](team/euchangexian.md)]
 
 * Role: Developer
