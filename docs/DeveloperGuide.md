@@ -267,31 +267,23 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### Product scope
 
-**Target user profile**:
+**Target user profile**: National University of Singapore, School of Computing, Year 2 students.
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+**Value proposition**: Our app aims to provide a platform for students to store work/school-related contacts. It will elevate user experience through organized contact categorization and task tagging.
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                 | So that I can…​                                                        |
-|----------|--------------------------------------------|------------------------------|------------------------------------------------------------------------|
-| `* * *`  | new user                                   | see usage instructions       | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person             |                                                                        |
-| `* * *`  | user                                       | delete a person              | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name        | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name         | locate a person easily                                                 |
-
-*{More to be added}*
+| **As a...**                             | **I want to...**                               | **So that I can...**            |
+|-----------------------------------------|------------------------------------------------|---------------------------------|
+| student                                 | Edit existing contact information.             | Keep it up-to-date.             |
+| student                                 | View a list of all my contacts in one place.   | Easily access my contacts.      |
+| student                                 | Create a new contact entry quickly and easily. | Save time when adding contacts. |
+| student                                 | Delete existing contacts.                      | Remove unwanted contacts.       |
+| student                                 | Add tasks related to a contact/group.          | Manage tasks efficiently.       |
 
 ### Use cases
 
@@ -398,12 +390,12 @@ otherwise)
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be
-able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+1. The application should respond to user interactions (e.g., searches, edits) within 2 seconds.
+2. The application should handle a large number of contacts efficiently
+3. The application should load GUI components and data swiftly upon startup.
+4. The application should adapt to various screen sizes and orientations to provide an optimal user experience on different devices
+5. The application should be able to scale to accommodate an increasing number of users without significant changes to the system architecture.
+6. The application user interface should be intuitive, requiring minimal training for new users.
 
 ### Glossary
 
