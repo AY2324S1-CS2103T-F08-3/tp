@@ -136,10 +136,42 @@
       "headingKeywords": {}
     },
     {
-      "src": "team/johndoe.md",
-      "title": "John Doe's Project Portfolio Page",
+      "src": "team/bkjwjason.md",
+      "title": "Loysius's Project Portfolio Page",
       "headings": {
-        "project-addressbook-level-3": "Project: AddressBook Level 3"
+        "project-y2direct": "Project: Y2Direct"
+      },
+      "headingKeywords": {}
+    },
+    {
+      "src": "team/blizzeracz.md",
+      "title": "Loysius's Project Portfolio Page",
+      "headings": {
+        "project-y2direct": "Project: Y2Direct"
+      },
+      "headingKeywords": {}
+    },
+    {
+      "src": "team/euchangxian.md",
+      "title": "Loysius's Project Portfolio Page",
+      "headings": {
+        "project-y2direct": "Project: Y2Direct"
+      },
+      "headingKeywords": {}
+    },
+    {
+      "src": "team/junnengsoo.md",
+      "title": "Loysius's Project Portfolio Page",
+      "headings": {
+        "project-y2direct": "Project: Y2Direct"
+      },
+      "headingKeywords": {}
+    },
+    {
+      "src": "team/wjayee.md",
+      "title": "Loysius's Project Portfolio Page",
+      "headings": {
+        "project-y2direct": "Project: Y2Direct"
       },
       "headingKeywords": {}
     },
