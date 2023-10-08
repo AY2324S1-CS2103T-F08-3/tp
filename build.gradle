@@ -40,6 +40,11 @@ task coverage(type: JacocoReport) {
     }
 }
 
+task runChecks(type: Exec) {
+    workingDir "${projectDir}/.github"
+    commandLine './run-checks.sh'
+}
+
 dependencies {
     String jUnitVersion = '5.4.0'
     String javaFxVersion = '17.0.7'

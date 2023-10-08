@@ -295,45 +295,119 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified
+otherwise)
+
+---
+
+**Use case: Add a person**
+
+**MSS**
+
+1. User requests to add a person with specific parameters.
+2. AddressBook verifies that the name parameter is not null.
+3. AddressBook verifies that the phone number contains 8 digits.
+4. AddressBook verifies if the group is already created.
+5. AddressBook verifies if the accessibility is either public or private. If not specified, sets it to public.
+6. AddressBook adds the contact to the address book.
+7. AddressBook displays a success message indicating that the contact was added.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The name is missing:
+    * 2a1. AddressBook displays an error message: "Please input a name."
+      Use case ends.
+
+---
+
+**Use case: List persons**
+
+**MSS**
+
+1. User requests to list persons.
+2. AddressBook displays a list of all contacts in the address book.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty:
+    * 2a1. AddressBook displays a message indicating that the list is empty.
+      Use case ends.
+
+---
+
+**Use case: Edit a person**
+
+**MSS**
+
+1. User requests to edit a person using the edit command with the necessary parameters.
+2. AddressBook updates the specified contact with the new details.
+3. AddressBook displays a success message indicating that the contact was successfully updated.
+
+   Use case ends.
+
+---
 
 **Use case: Delete a person**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User requests to list persons.
+2. AddressBook displays a list of persons.
+3. User requests to delete a specific person in the list.
+4. AddressBook deletes the person.
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
-
+* 2a. The list is empty:
   Use case ends.
 
-* 3a. The given index is invalid.
-
-    * 3a1. AddressBook shows an error message.
-
+* 3a. The given index is invalid:
+    * 3a1. AddressBook displays an error message.
       Use case resumes at step 2.
 
-*{More to be added}*
+---
+
+**Use case: Add a task**
+
+**MSS**
+
+1. User requests to add a task with description and deadline related to specific contacts or groups.
+2. AddressBook adds the task.
+3. AddressBook displays a success message indicating that the task was added.
+
+   Use case ends.
+
+---
+
+**Use case: Exit the program**
+
+**MSS**
+
+1. User requests to exit the program.
+2. AddressBook terminates the application.
+
+   Use case ends.
+
+---
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be
+able to accomplish most of the tasks faster using commands than using the mouse.
 
 *{More to be added}*
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
 
 --------------------------------------------------------------------------------------------------------------------
 
