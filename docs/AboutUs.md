@@ -36,7 +36,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/euchangxian.png" width="200px">
 
 [[github](http://github.com/euchangxian)]
-[[portfolio](team/euchangexian.md)]
+[[portfolio](team/euchangxian.md)]
 
 * Role: Developer
 * Responsibilities: Testing, Integration expert

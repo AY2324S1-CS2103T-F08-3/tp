@@ -1,6 +1,6 @@
 ---
 layout: default.md
-title: "Loysius's Project Portfolio Page"
+title: "Chang Xian's Project Portfolio Page"
 ---
 
 ### Project: Y2Direct
@@ -10,23 +10,24 @@ contacts. It will elevate user experience through organized contact categorizati
 
 Given below are my contributions to the project:
 
-* **Code contributed**: [Loysius' RepoSense Link](https://nus-cs2103-ay2324s1.github.io/tp-dashboard/?search=blizzeracz&breakdown=true)
+* **Code contributed**: [Chang Xian's RepoSense Link](https://nus-cs2103-ay2324s1.github.io/tp-dashboard/?search=euchangxian&breakdown=true)
 
 * **Project management**:
-    * Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
+    * // TODO
 
 * **Enhancements to existing features**:
-  to be added
-*
+  - // TODO
 
 * **Documentation**:
-    * User Guide:
-      to be added
-    * Developer Guide:
-      to be added
+  - User Guide:
+    - Migrated User Guide from Google Docs to MarkDown
+  - Developer Guide:
+    - // TODO
 
 * **Team Tasks**:
     * Updated AboutUs
+    * Migrated and updated User Guide
+    * Improved CI workflow
 
 * **Community**:
     * PRs reviewed (with non-trivial review comments): *To be added soon...*
