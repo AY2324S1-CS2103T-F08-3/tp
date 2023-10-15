@@ -107,11 +107,10 @@
       "src": "UserGuide.md",
       "title": "User Guide",
       "headings": {
-        "y2direct-user-guide": "Y2Direct User Guide",
+        "pawfection-user-guide": "PawFection User Guide",
         "quick-start": "Quick start",
         "features": "Features",
-        "contacts-management": "Contacts Management",
-        "task-and-amp-reminder-management": "Task &amp; Reminder Management",
+        "entry-management": "Entry Management",
         "faq": "FAQ",
         "known-issues": "Known issues",
         "command-summary": "Command summary"
