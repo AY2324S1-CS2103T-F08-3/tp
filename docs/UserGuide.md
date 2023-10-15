@@ -4,38 +4,25 @@
   pageNav: 3
 ---
 
-# Y2Direct User Guide
+# PawFection User Guide
 
-Y2Direct (Y2D) is a **desktop app for managing contacts, optimized for use via a Line Interface** (CLI) while still
-having the benefits of a Graphical User Interface (GUI). It aims to provide a platform for students to store
-work/school-related contacts. It will elevate user experience through organized contact categorization and task
-tagging.
+PawFection is a **desktop app for managing animals in a pet shelter, optimized for use via a Command Line Interface** (CLI) while still
+having the benefits of a Graphical User Interface (GUI). It aims to provide a platform for volunteers to store and retrieve information
+about animals in a shelter easily. 
 
 <!-- * Table of Contents -->
 - [Quick start](#quick-start)
-- [Features](#features)
-    - [Contact Management](#contacts-management)
-      - [Add Contact](#adding-a-person-addcontact)
-      - [List all contacts](#listing-all-persons--list)
-      - [Edit a contact](#editing-a-person--edit)
-      - [Find a contact](#locating-persons-by-name-find)
-      - [Delete a contact](#deleting-a-person--delete)
-    - [Task & Reminder Management](#task--reminder-management)
-      - [Add Task](#adding-a-task-addtask)
-- [FAQ](#faq)
-- [Known Issues](#known-issues)
-- [Command Summary](#command-summary)
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-2. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+2. Download the latest `pawfection.jar`.
 
-3. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+3. Copy the file to the folder you want to use as the _home folder_ for your PawFection.
 
-4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
+4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar pawfection.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
@@ -44,9 +31,9 @@ tagging.
 
    * `list` : Lists all contacts.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * `add n/Pookie id/98765432 t/dog g/male a/37` : Adds a dog named 'Pookie' to the Address Book.
 
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
+   * `delete 3` : Deletes the 3rd entry shown in the current list.
 
    * `clear` : Deletes all contacts.
 
@@ -63,7 +50,7 @@ tagging.
 **Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/Pookie`.
 
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
@@ -80,84 +67,38 @@ tagging.
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </box>
 
-#### Viewing help : `help`
+### Entry Management
 
-Shows a message explaining how to access the help page.
+#### Adding an animal: `addanimal`
+Adds an animal to the address book.
 
-![help message](images/helpMessage.png)
-
-Format: `help`
-
-### Contacts Management
-
-#### Adding a person: `addcontact`
-Adds a person to the address book.
-
-Format: `addcontact n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [g/GROUP] [t/TAG]…​`
+Format: `addanimal n/NAME id/ID t/TYPE g/GENDER a/AGE`
 
 <box type="tip" seamless>
 
-**Tip:** A person can have any number of tags (including 0)
+**Tip:** 
 </box>
 
 Examples:
-* `addcontact n/John Doe p/98765432 e/johnd@example.com a/John street, Block 123, #01-01`
-Expected outcome (success): Added John Doe to your contacts!
-* `addcontact p/98765432 e/johnd@example.com a/John street, Block 123, #01-01`
-Expected outcome (failure): Please input a name`
 
-#### Listing all persons : `list`
-Shows a list of all persons in the address book.
+#### Listing all animals: `list`
+Shows a list of all animals in the address book.
 
 Format: `list`
 
 Expected outcome (success):\
 Here is the list of all contacts in your address book:
-1. John Doe 98765432 johnd@example.com John street, Block 123, #01-01
-2. Loysius 91234567 blizzerac@example.com Pasir Ris Avenue 6
-3. Jason Baek 97896054 jasonbaek@example.com Ivory tower 6
+1. Pookie 1234567 Dog Male 5y/o
+2. Tofu 1234565 Cat Female 1y/o
 
 
-#### Editing a person : `edit`
-Edits an existing person in the address book.
-
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [g/GROUP]`
-
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
-
-Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be
-`91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
-
-#### Locating persons by name: `find`
-Finds persons whose names contain any of the given keywords.
-
-Format: `find KEYWORD [MORE_KEYWORDS]`
-
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`
-
-#### Deleting a person : `delete`
-Deletes the specified person from the address book.
+#### Deleting an animal: `delete`
+Deletes the specified animal from the address book.
 
 Format: `delete INDEX`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+* Deletes the animal at the specified `INDEX`.
+* The index refers to the index number shown in the displayed list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
@@ -174,23 +115,14 @@ Exits the program.
 
 Format: `exit`
 
-### Task & Reminder Management
-#### Adding a task: `addtask`
-Adds a task related to specific contacts or groups.
-
-Format: `addtask d/DESCRIPTION deadline/DEADLINE`
-
-Example:
-`addtask d/Meeting with Jane deadline/2023-09-30`
-
 
 #### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+PawFection data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 #### Editing the data file
 
-AddressBook data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+PawFection data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <box type="warning" seamless>
 
@@ -219,10 +151,9 @@ _Details coming soon ..._
 
 Action     | Format, Examples
 -----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**Add**    | - `addcontact n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [g/GROUP] [t/TAG]…​`<br>- `addtask d/DESCRIPTION deadline/DEADLINE`
+**Add**    | - `addcontact n/NAME id/ID t/TYPE g/GENDER a/AGE`
 **Clear**  | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Edit**   | `edit INDEX [n/NAME] [id/ID] [t/TYPE] [g/GENDER] [a/AGE]…​`<br>`
 **List**   | `list`
 **Help**   | `help`
