@@ -1,6 +1,6 @@
 ---
 layout: default.md
-title: "Loysius's Project Portfolio Page"
+title: "Ja Yee's Project Portfolio Page"
 ---
 
 ### Project: Y2Direct
@@ -10,7 +10,7 @@ contacts. It will elevate user experience through organized contact categorizati
 
 Given below are my contributions to the project:
 
-* **Code contributed**: [Loysius' RepoSense Link](https://nus-cs2103-ay2324s1.github.io/tp-dashboard/?search=blizzeracz&breakdown=true)
+* **Code contributed**: [Ja Yee's RepoSense Link](https://nus-cs2103-ay2324s1.github.io/tp-dashboard/?search=wjayee&breakdown=true)
 
 * **Project management**:
     * Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub

@@ -391,8 +391,8 @@ otherwise)
 ### Non-Functional Requirements
 
 1. The application should respond to user interactions (e.g., searches, edits) within 2 seconds.
-2. The application should handle a large number of contacts efficiently
-3. The application should load GUI components and data swiftly upon startup.
+2. The application should handle up to 200 contacts efficiently
+3. The application should load GUI components and data within 5 seconds upon startup.
 4. The application should adapt to various screen sizes and orientations to provide an optimal user experience on different devices
 5. The application should be able to scale to accommodate an increasing number of users without significant changes to the system architecture.
 6. The application user interface should be intuitive, requiring minimal training for new users.
