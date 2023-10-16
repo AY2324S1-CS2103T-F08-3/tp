@@ -31,9 +31,9 @@ about animals in a shelter easily.
 
    * `list` : Lists all contacts.
 
-   * `add n/Pookie id/98765432 t/dog g/male a/37` : Adds a dog named 'Pookie' to the Address Book.
+   * `add n/Pookie i/1234 db/28-2-2022 s/male b/Golden Retriver da/23-5-2022` : Adds a dog named 'Pookie' to the Address Book.
 
-   * `delete 3` : Deletes the 3rd entry shown in the current list.
+   * `delete 3` : Deletes the animal with ID 3.
 
    * `clear` : Deletes all contacts.
 
@@ -45,7 +45,7 @@ about animals in a shelter easily.
 
 ## Features
 
-<box type="info" seamless>
+<div type="info" seamless>
 
 **Notes about the command format:**<br>
 
@@ -53,13 +53,13 @@ about animals in a shelter easily.
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/Pookie`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g `n/NAME [t/NOTES]` can be used as `n/Pookie t/Aggressive towards DOGS` or as `n/Pookie`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g. `[t/NOTES]…​` can be used as `t/friendly towards human`, `t/friendly towards human t/hates walking` etc.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  e.g. if the command specifies `n/NAME db/DOB`, `db/DOB n/NAME` is also acceptable.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
@@ -69,41 +69,80 @@ about animals in a shelter easily.
 
 ### Entry Management
 
-#### Adding an animal: `addanimal`
+#### Adding an animal: `add`
 Adds an animal to the address book.
 
-Format: `addanimal n/NAME id/ID t/TYPE g/GENDER a/AGE`
+Format: `add n/NAME i/ID db/DOB s/SEX b/BREED da/DOA`
 
-<box type="tip" seamless>
-
-**Tip:** 
-</box>
+* ID must be a unique 4 digit number.
 
 Examples:
+* `add n/Pookie i/1234 db/28-2-2022 s/male b/Golden Retriver da/23-5-2022`
+* `add n/Tofu i/1242 db/21/4/2023 s/female b/British Shorthair da/25-5-2022`
+
+
+#### Adding healthStatus to animal: `addhealth`
+Adds a health status to an animal in the address book.
+
+Format: `addhealth ID [s/STERERILIZATION_STATUS]... [v/VACCINATION_STATUS]... [a/ALLERGY]... [d/DIETRY_RESTRICTION]...`
+
+* Adds a health status to the animal at the specified `ID`.
+* At least one of the parameters must be provided.
+* Input values will be added on to the existing health status of the animal.
+
+Examples:
+* `addhealth 1 s/sterilized  v/Feline Lukeimia Virus v/Feline Calcivirus a/grass d/chocolate` adds sterilization status, two vaccination status, allergy and dietary restriction to the animal with ID 1.
+* `addhealth 2 s/unsterilized` adds sterilization status to the animal with ID 2.
+
+#### Removing healthStatus from animal: `removehealth`
+Removes a health status from an animal in the address book.
+
+Format: `removehealth ID [s/STERERILIZATION_STATUS_INDEX] [v/VACCINATION_STATUS_INDEX] [a/ALLERGY_INDEX] [d/DIETRY_RESTRICTION_INDEX`]
+
+* Removes a status of the specified health status from the animal at the specified `ID`.
+* At least one of the parameters must be provided.
+* Input values will be removed from the existing health status of the animal.
+
+Examples:
+* `removehealth 1 s/1 v/1 a/1 d/1` removes the first sterilization status, vaccination status, allergy and dietary restriction from the animal with ID 1.
+* `removehealth 2 s/3` removes the third sterilization status from the animal with ID 2.
 
 #### Listing all animals: `list`
 Shows a list of all animals in the address book.
 
 Format: `list`
 
-Expected outcome (success):\
-Here is the list of all contacts in your address book:
-1. Pookie 1234567 Dog Male 5y/o
-2. Tofu 1234565 Cat Female 1y/o
+* The list is sorted by the name of the animal in alphabetical order.
+* Can be use after using the `find` command to list all animals again.
 
 
 #### Deleting an animal: `delete`
 Deletes the specified animal from the address book.
 
-Format: `delete INDEX`
+Format: `delete ID`
 
-* Deletes the animal at the specified `INDEX`.
-* The index refers to the index number shown in the displayed list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* Deletes the animal at the specified `ID`.
+* The ID refers to the Animal ID number.
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `list` followed by `delete 2` still deletes the animal with ID 2.
+* `find Tofu` followed by `delete 1` still deletes the animal with ID 1 which might not be the same as the animal in the find list.
+
+#### Finding an animal: `find`
+Finds animals whose names/ID contain any of the given keywords.
+
+Format: `findn KEYWORD [MORE_KEYWORDS]…​` OR `findi KEYWORD [MORE_KEYWORDS]…​`
+
+* findn searches for animals whose names contain any of the given keywords while findi searches for animals whose ID 
+contain any of the given keywords.
+* The search is case-insensitive. e.g `pookie` will match `Pookie`
+* Animals matching at least one keyword will be returned (i.e. `OR` search).
+  e.g. `pookie tofu` will return `Pookie` and `Tofu`
+
+
+Examples:
+* `findn Pookie` returns `Pookie`
+* `findi 1234` returns `Pookie`
 
 #### Clearing all entries : `clear`
 Clears all entries from the address book.
@@ -125,10 +164,10 @@ PawFection data are saved in the hard disk automatically after any command that 
 PawFection data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <box type="warning" seamless>
-
 **Caution:**
 If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.  Hence, it is recommended to take a backup of the file before editing it.
 </box>
+
 
 _Details coming soon ..._
 
@@ -151,9 +190,11 @@ _Details coming soon ..._
 
 Action     | Format, Examples
 -----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**Add**    | - `addcontact n/NAME id/ID t/TYPE g/GENDER a/AGE`
+**Add**    | `add n/NAME i/ID db/DOB da/DOA s/SEX b/BREED`
+**AddHealth** | `addhealth ID [s/STERERILIZATION_STATUS]... [v/VACCINATION_STATUS]... [a/ALLERGY]... [d/DIETRY_RESTRICTION]...`
+**RemoveHealth** | `removehealth ID [s/STERERILIZATION_STATUS_INDEX] [v/VACCINATION_STATUS_INDEX] [a/ALLERGY_INDEX] [d/DIETRY_RESTRICTION_INDEX]`
 **Clear**  | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit**   | `edit INDEX [n/NAME] [id/ID] [t/TYPE] [g/GENDER] [a/AGE]…​`<br>`
+**Delete** | `delete ID`<br> e.g., `delete 3`
 **List**   | `list`
+**Find**   | `find KEYWORD [MORE_KEYWORDS]…​`<br> e.g., `find Pookie`
 **Help**   | `help`
