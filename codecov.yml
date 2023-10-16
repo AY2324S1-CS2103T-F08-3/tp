@@ -1,0 +1,3 @@
+codecov:
+  ignore:
+    - "src/main/java/seedu/address/model/animal/*" # Exclude all files within the animal directory
