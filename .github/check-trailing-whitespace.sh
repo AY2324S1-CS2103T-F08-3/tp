@@ -14,6 +14,7 @@ awk '
         # (e.g. GitHub web editor)
         if ($1 ~ /\.md$/) {
             severity = "WARN"
+            ret = 1
         } else {
             severity = "ERROR"
             ret = 1
