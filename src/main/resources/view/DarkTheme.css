@@ -104,7 +104,7 @@
 }
 
 .list-cell:filled:odd {
-    -fx-background-color: #515658;
+    -fx-background-color: #FF8B00;
 }
 
 .list-cell:filled:selected {
@@ -129,7 +129,7 @@
 .cell_small_label {
     -fx-font-family: "Segoe UI";
     -fx-font-size: 13px;
-    -fx-text-fill: #010504;
+    -fx-text-fill: #FFFFFF;
 }
 
 .stack-pane {

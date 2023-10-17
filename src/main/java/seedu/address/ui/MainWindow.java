@@ -45,6 +45,9 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane personListPanelPlaceholder;
 
     @FXML
+    private StackPane personDetailPanelPlaceholder;
+
+    @FXML
     private StackPane resultDisplayPlaceholder;
 
     @FXML
@@ -110,11 +113,16 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
-
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
+
+        // Sample code, adjust accordingly
+        PersonDetailPanel personDetailPanel = new PersonDetailPanel(); // Use a default person
+        personDetailPanelPlaceholder.getChildren().add(personDetailPanel.getRoot());
+
+        personListPanel = new PersonListPanel(logic.getFilteredPersonList(), personDetailPanel);
+        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
@@ -150,6 +158,11 @@ public class MainWindow extends UiPart<Stage> {
     void show() {
         primaryStage.show();
     }
+
+    public void showPersonDetail(PersonDetailPanel personDetailPanel) {
+        personDetailPanelPlaceholder.getChildren().setAll(personDetailPanel.getRoot());
+    }
+
 
     /**
      * Closes the application.
