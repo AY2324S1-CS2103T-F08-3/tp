@@ -3,68 +3,68 @@
 skinparam ArrowFontStyle plain
 
 box Logic LOGIC_COLOR_T1
-participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
-participant ":DeleteCommandParser" as DeleteCommandParser LOGIC_COLOR
-participant "d:DeleteCommand" as DeleteCommand LOGIC_COLOR
+participant ":AnimalLogicManager" as AnimalLogicManager LOGIC_COLOR
+participant ":AnimalCatalogParser" as AnimalCatalogParser LOGIC_COLOR
+participant ":DeleteAnimalCommandParser" as DeleteAnimalCommandParser LOGIC_COLOR
+participant "d:DeleteAnimalCommand" as DeleteAnimalCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
-box Model MODEL_COLOR_T1
-participant ":Model" as Model MODEL_COLOR
+box AnimalModel MODEL_COLOR_T1
+participant ":AnimalModel" as AnimalModel MODEL_COLOR
 end box
 
-[-> LogicManager : execute("delete 1")
-activate LogicManager
+[-> AnimalLogicManager : execute("delete 1")
+activate AnimalLogicManager
 
-LogicManager -> AddressBookParser : parseCommand("delete 1")
-activate AddressBookParser
+AnimalLogicManager -> AnimalCatalogParser : parseCommand("delete 1")
+activate AnimalCatalogParser
 
-create DeleteCommandParser
-AddressBookParser -> DeleteCommandParser
-activate DeleteCommandParser
+create DeleteAnimalCommandParser
+AnimalCatalogParser -> DeleteAnimalCommandParser
+activate DeleteAnimalCommandParser
 
-DeleteCommandParser --> AddressBookParser
-deactivate DeleteCommandParser
+DeleteAnimalCommandParser --> AnimalCatalogParser
+deactivate DeleteAnimalCommandParser
 
-AddressBookParser -> DeleteCommandParser : parse("1")
-activate DeleteCommandParser
+AnimalCatalogParser -> DeleteAnimalCommandParser : parse("1")
+activate DeleteAnimalCommandParser
 
-create DeleteCommand
-DeleteCommandParser -> DeleteCommand
-activate DeleteCommand
+create DeleteAnimalCommand
+DeleteAnimalCommandParser -> DeleteAnimalCommand
+activate DeleteAnimalCommand
 
-DeleteCommand --> DeleteCommandParser : d
-deactivate DeleteCommand
+DeleteAnimalCommand --> DeleteAnimalCommandParser : d
+deactivate DeleteAnimalCommand
 
-DeleteCommandParser --> AddressBookParser : d
-deactivate DeleteCommandParser
+DeleteAnimalCommandParser --> AnimalCatalogParser : d
+deactivate DeleteAnimalCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-DeleteCommandParser -[hidden]-> AddressBookParser
-destroy DeleteCommandParser
+DeleteAnimalCommandParser -[hidden]-> AnimalCatalogParser
+destroy DeleteAnimalCommandParser
 
-AddressBookParser --> LogicManager : d
-deactivate AddressBookParser
+AnimalCatalogParser --> AnimalLogicManager : d
+deactivate AnimalCatalogParser
 
-LogicManager -> DeleteCommand : execute()
-activate DeleteCommand
+AnimalLogicManager -> DeleteAnimalCommand : execute()
+activate DeleteAnimalCommand
 
-DeleteCommand -> Model : deletePerson(1)
-activate Model
+DeleteAnimalCommand -> AnimalModel : deleteAnimal(1)
+activate AnimalModel
 
-Model --> DeleteCommand
-deactivate Model
+AnimalModel --> DeleteAnimalCommand
+deactivate AnimalModel
 
 create CommandResult
-DeleteCommand -> CommandResult
+DeleteAnimalCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> DeleteCommand
+CommandResult --> DeleteAnimalCommand
 deactivate CommandResult
 
-DeleteCommand --> LogicManager : result
-deactivate DeleteCommand
+DeleteAnimalCommand --> AnimalLogicManager : result
+deactivate DeleteAnimalCommand
 
-[<--LogicManager
-deactivate LogicManager
+[<--AnimalLogicManager
+deactivate AnimalLogicManager
 @enduml
