@@ -6,38 +6,35 @@ skinparam classBackgroundColor STORAGE_COLOR
 
 package Storage as StoragePackage {
 
-package "UserPrefs Storage" #F4F6F6{
-Class "<<interface>>\nUserPrefsStorage" as UserPrefsStorage
-Class JsonUserPrefsStorage
-}
+    package "UserPrefs Storage" #F4F6F6{
+        Class "<<interface>>\nAnimalUserPrefsStorage" as UserPrefsStorage
+        Class JsonAnimalUserPrefsStorage
+    }
 
-Class "<<interface>>\nStorage" as Storage
-Class StorageManager
+    Class "<<interface>>\nAnimalStorage" as Storage
+    Class AnimalStorageManager
 
-package "AddressBook Storage" #F4F6F6{
-Class "<<interface>>\nAddressBookStorage" as AddressBookStorage
-Class JsonAddressBookStorage
-Class JsonSerializableAddressBook
-Class JsonAdaptedPerson
-Class JsonAdaptedTag
-}
-
+    package "AnimalCatalog Storage" #F4F6F6{
+        Class "<<interface>>\AnimalCatalogStorage" as AnimalCatalogStorage
+        Class JsonAnimalCatalogStorage
+        Class JsonSerializableAnimalCatalog
+        Class JsonAdaptedAnimal
+    }
 }
 
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Storage
 
-StorageManager .up.|> Storage
-StorageManager -up-> "1" UserPrefsStorage
-StorageManager -up-> "1" AddressBookStorage
+AnimalStorageManager .up.|> Storage
+AnimalStorageManager -up-> "1" UserPrefsStorage
+AnimalStorageManager -up-> "1" AnimalCatalogStorage
 
 Storage -left-|> UserPrefsStorage
-Storage -right-|> AddressBookStorage
+Storage -right-|> AnimalCatalogStorage
 
-JsonUserPrefsStorage .up.|> UserPrefsStorage
-JsonAddressBookStorage .up.|> AddressBookStorage
-JsonAddressBookStorage ..> JsonSerializableAddressBook
-JsonSerializableAddressBook --> "*" JsonAdaptedPerson
-JsonAdaptedPerson --> "*" JsonAdaptedTag
+JsonAnimalUserPrefsStorage .up.|> UserPrefsStorage
+JsonAnimalCatalogStorage .up.|> AnimalCatalogStorage
+JsonAnimalCatalogStorage ..> JsonSerializableAnimalCatalog
+JsonSerializableAnimalCatalog --> "*" JsonAdaptedAnimal
 
 @enduml
