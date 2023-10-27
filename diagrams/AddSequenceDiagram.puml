@@ -1,0 +1,70 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":AnimalLogicManager" as AnimalLogicManager LOGIC_COLOR
+participant ":AnimalCatalogParser" as AnimalCatalogParser LOGIC_COLOR
+participant ":AddAnimalCommandParser" as AddAnimalCommandParser LOGIC_COLOR
+participant ":AddAnimalCommand" as AddAnimalCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box AnimalModel MODEL_COLOR_T1
+participant ":AnimalModel" as AnimalModel MODEL_COLOR
+end box
+
+[-> AnimalLogicManager : execute("add /n ...")
+activate AnimalLogicManager
+
+AnimalLogicManager -> AnimalCatalogParser : parseCommand("add /n ...")")
+activate AnimalCatalogParser
+
+create AddAnimalCommandParser
+AnimalCatalogParser -> AddAnimalCommandParser
+activate AddAnimalCommandParser
+
+AddAnimalCommandParser --> AnimalCatalogParser
+deactivate AddAnimalCommandParser
+
+AnimalCatalogParser -> AddAnimalCommandParser : parse("/n ...")")
+activate AddAnimalCommandParser
+
+create AddAnimalCommand
+AddAnimalCommandParser -> AddAnimalCommand
+activate AddAnimalCommand
+
+AddAnimalCommand --> AddAnimalCommandParser : animal
+deactivate AddAnimalCommand
+
+AddAnimalCommandParser --> AnimalCatalogParser : animal
+deactivate AddAnimalCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddAnimalCommandParser -[hidden]-> AnimalCatalogParser
+destroy AddAnimalCommandParser
+
+AnimalCatalogParser --> AnimalLogicManager : animal
+deactivate AnimalCatalogParser
+
+AnimalLogicManager -> AddAnimalCommand : execute(model)
+activate AddAnimalCommand
+
+AddAnimalCommand -> AnimalModel : addAnimal(animal)
+activate AnimalModel
+
+AnimalModel --> AddAnimalCommand
+deactivate AnimalModel
+
+create CommandResult
+AddAnimalCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddAnimalCommand
+deactivate CommandResult
+
+AddAnimalCommand --> AnimalLogicManager : result
+deactivate AddAnimalCommand
+
+[<--AnimalLogicManager
+deactivate AnimalLogicManager
+@enduml
