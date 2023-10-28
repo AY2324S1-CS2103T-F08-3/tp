@@ -4,14 +4,14 @@ skinparam arrowThickness 1.1
 skinparam arrowColor LOGIC_COLOR_T4
 skinparam classBackgroundColor LOGIC_COLOR
 
-package Logic as LogicPackage {
-Class "<<interface>>\nLogic" as Logic
-Class LogicManager
+package AnimalLogic as LogicPackage {
+Class "<<interface>>\nAnimalLogic" as AnimalLogic
+Class AnimalLogicManager
 }
 
-package Model as ModelPackage {
-Class "<<interface>>\nModel" as Model
-Class ModelManager
+package AnimalModel as ModelPackage {
+Class "<<interface>>\nAnimalModel" as AnimalModel
+Class AnimalModelManager
 }
 
 package Storage as StoragePackage {
@@ -20,12 +20,12 @@ Class StorageManager
 }
 
 Class HiddenOutside #FFFFFF
-HiddenOutside ..> Logic
+HiddenOutside ..> AnimalLogic
 
-LogicManager .up.|> Logic
-ModelManager .up.|> Model
+AnimalLogicManager .up.|> AnimalLogic
+AnimalModelManager .up.|> AnimalModel
 StorageManager .up.|> Storage
 
-LogicManager --> Model
-LogicManager --> Storage
+AnimalLogicManager --> AnimalModel
+AnimalLogicManager --> Storage
 @enduml

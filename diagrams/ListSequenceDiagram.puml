@@ -1,0 +1,53 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":AnimalLogicManager" as AnimalLogicManager LOGIC_COLOR
+participant ":AnimalCatalogParser" as AnimalCatalogParser LOGIC_COLOR
+participant ":ListAnimalCommand" as ListAnimalCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box AnimalModel MODEL_COLOR_T1
+participant ":AnimalModel" as AnimalModel MODEL_COLOR
+end box
+
+[-> AnimalLogicManager : execute("list")
+activate AnimalLogicManager
+
+AnimalLogicManager -> AnimalCatalogParser : parseCommand("delete 1")
+activate AnimalCatalogParser
+
+create ListAnimalCommand
+AnimalCatalogParser -> ListAnimalCommand
+activate ListAnimalCommand
+
+ListAnimalCommand --> AnimalCatalogParser
+deactivate ListAnimalCommand
+
+AnimalCatalogParser --> AnimalLogicManager : l
+deactivate AnimalCatalogParser
+
+AnimalLogicManager -> ListAnimalCommand : execute()
+activate ListAnimalCommand
+
+ListAnimalCommand -> AnimalModel : updateFilteredAnimalList(unused -> true)
+activate AnimalModel
+
+AnimalModel --> ListAnimalCommand
+deactivate AnimalModel
+
+create CommandResult
+ListAnimalCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> ListAnimalCommand
+deactivate CommandResult
+
+ListAnimalCommand --> AnimalLogicManager : result
+deactivate ListAnimalCommand
+
+[<--AnimalLogicManager
+deactivate AnimalLogicManager
+@enduml

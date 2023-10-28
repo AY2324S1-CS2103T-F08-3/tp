@@ -4,9 +4,9 @@ skinparam ArrowFontStyle plain
 
 Actor User as user USER_COLOR
 Participant ":UI" as ui UI_COLOR
-Participant ":Logic" as logic LOGIC_COLOR
-Participant ":Model" as model MODEL_COLOR
-Participant ":Storage" as storage STORAGE_COLOR
+Participant ":AnimalLogic" as logic LOGIC_COLOR
+Participant ":AnimalModel" as model MODEL_COLOR
+Participant ":AnimalStorage" as storage STORAGE_COLOR
 
 user -[USER_COLOR]> ui : "delete 1"
 activate ui UI_COLOR
@@ -14,13 +14,13 @@ activate ui UI_COLOR
 ui -[UI_COLOR]> logic : execute("delete 1")
 activate logic LOGIC_COLOR
 
-logic -[LOGIC_COLOR]> model : deletePerson(p)
+logic -[LOGIC_COLOR]> model : deleteAnimal(p)
 activate model MODEL_COLOR
 
 model -[MODEL_COLOR]-> logic
 deactivate model
 
-logic -[LOGIC_COLOR]> storage : saveAddressBook(addressBook)
+logic -[LOGIC_COLOR]> storage : saveAnimalCatalog(animalCatalog)
 activate storage STORAGE_COLOR
 
 storage -[STORAGE_COLOR]> storage : Save to file

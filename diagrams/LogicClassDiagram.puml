@@ -4,19 +4,19 @@ skinparam arrowThickness 1.1
 skinparam arrowColor LOGIC_COLOR_T4
 skinparam classBackgroundColor LOGIC_COLOR
 
-package Logic as LogicPackage {
+package AnimalLogic as LogicPackage {
 
-Class AddressBookParser
+Class AnimalCatalogParser
 Class XYZCommand
 Class CommandResult
-Class "{abstract}\nCommand" as Command
+Class "{abstract}\nAnimalCommand" as AnimalCommand
 
 
-Class "<<interface>>\nLogic" as Logic
-Class LogicManager
+Class "<<interface>>\nAnimalLogic" as AnimalLogic
+Class AnimalLogicManager
 }
 
-package Model {
+package AnimalModel {
 Class HiddenModel #FFFFFF
 }
 
@@ -24,23 +24,23 @@ package Storage {
 }
 
 Class HiddenOutside #FFFFFF
-HiddenOutside ..> Logic
+HiddenOutside ..> AnimalLogic
 
-LogicManager .right.|> Logic
-LogicManager -right->"1" AddressBookParser
-AddressBookParser ..> XYZCommand : creates >
+AnimalLogicManager .right.|> AnimalLogic
+AnimalLogicManager -right->"1" AnimalCatalogParser
+AnimalCatalogParser ..> XYZCommand : creates >
 
-XYZCommand -up-|> Command
-LogicManager .left.> Command : executes >
+XYZCommand -up-|> AnimalCommand
+AnimalLogicManager .left.> AnimalCommand : executes >
 
-LogicManager --> Model
-LogicManager --> Storage
-Storage --[hidden] Model
-Command .[hidden]up.> Storage
-Command .right.> Model
-note right of XYZCommand: XYZCommand = AddCommand, \nFindCommand, etc
+AnimalLogicManager --> AnimalModel
+AnimalLogicManager --> Storage
+Storage --[hidden] AnimalModel
+AnimalCommand .[hidden]up.> Storage
+AnimalCommand .right.> AnimalModel
+note right of XYZCommand: XYZCommand = AddCommand, \nDeleteCommand, etc
 
-Logic ..> CommandResult
-LogicManager .down.> CommandResult
-Command .up.> CommandResult : produces >
+AnimalLogic ..> CommandResult
+AnimalLogicManager .down.> CommandResult
+AnimalCommand .up.> CommandResult : produces >
 @enduml
