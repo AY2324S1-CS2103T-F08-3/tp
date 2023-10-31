@@ -5,14 +5,11 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.animal.AdmissionDate;
-import seedu.address.model.animal.Breed;
-import seedu.address.model.animal.DateOfBirth;
-import seedu.address.model.animal.Name;
-import seedu.address.model.animal.PetId;
-import seedu.address.model.animal.Sex;
-import seedu.address.model.animal.Species;
+import seedu.address.model.animal.*;
 
+import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 /**
@@ -140,4 +137,77 @@ public class AnimalParserUtil {
         return new AdmissionDate(doa);
     }
 
+    /**
+     * Parses the given {@code input} into a {@code ParsedTaskInput} object.
+     * <p>
+     * The input is expected to be in the format: <index> <task description>,
+     * where <index> represents the target animal's position in the list (as a positive integer),
+     * and <task description> is a description of the task to be added.
+     * </p>
+     * <p>
+     * The method uses regular expressions to extract the <index> and <task description> parts
+     * and then constructs a {@code ParsedTaskInput} object.
+     * </p>
+     *
+     * @param input The string input to be parsed.
+     * @return A {@code ParsedTaskInput} object containing the parsed target index and task description.
+     * @throws ParseException if the given {@code input} is invalid or does not conform to the expected format.
+     */
+    public static ParsedTaskInput parseTaskInput(String input) throws ParseException {
+        String trimmedInput = input.trim();
+        Pattern pattern = Pattern.compile("^(\\d+)\\s+(.+)$");
+        Matcher matcher = pattern.matcher(trimmedInput);
+
+        if (!matcher.matches()) {
+            throw new ParseException("Invalid input format. Expected: <index> <task description>");
+        }
+
+        String indexStr = matcher.group(1);
+        String taskDescription = matcher.group(2);
+
+        if (!StringUtil.isNonZeroUnsignedInteger(indexStr)) {
+            throw new ParseException(MESSAGE_INVALID_INDEX);
+        }
+
+        Index index = Index.fromOneBased(Integer.parseInt(indexStr));
+        return new ParsedTaskInput(index, taskDescription);
+    }
+
+    /**
+     * Represents a parsed task input consisting of a target index and a task description.
+     * Guarantees: immutable; the target index and task description are present and not null.
+     */
+    public static class ParsedTaskInput {
+        private final Index targetIndex;
+        private final String taskDescription;
+
+        public ParsedTaskInput(Index targetIndex, String taskDescription) {
+            this.targetIndex = targetIndex;
+            this.taskDescription = taskDescription;
+        }
+
+        public Index getTargetIndex() {
+            return targetIndex;
+        }
+
+        public Task getTaskDescription() {
+            return new Task(taskDescription);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(targetIndex, taskDescription);
+        }
+
+        @Override
+        public boolean equals(Object other) {
+            return other == this // short circuit if same object
+                    || (other instanceof ParsedTaskInput // instanceof handles nulls
+                    && targetIndex.equals(((ParsedTaskInput) other).targetIndex)
+                    && taskDescription.equals(((ParsedTaskInput) other).taskDescription));
+        }
+    }
+
+
 }
+

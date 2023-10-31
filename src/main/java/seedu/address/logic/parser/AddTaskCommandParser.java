@@ -1,91 +1,34 @@
 package seedu.address.logic.parser;
 
-import static seedu.address.logic.parser.CliAnimalSyntax.BREED;
-import static seedu.address.logic.parser.CliAnimalSyntax.DATE_OF_ADMISSION;
-import static seedu.address.logic.parser.CliAnimalSyntax.DATE_OF_BIRTH;
-import static seedu.address.logic.parser.CliAnimalSyntax.NAME;
-import static seedu.address.logic.parser.CliAnimalSyntax.PET_ID;
-import static seedu.address.logic.parser.CliAnimalSyntax.SEX;
-import static seedu.address.logic.parser.CliAnimalSyntax.SPECIES;
+import static seedu.address.logic.AnimalMessages.MESSAGE_INVALID_COMMAND_FORMAT;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
-import seedu.address.logic.AnimalMessages;
-import seedu.address.logic.commands.AddAnimalCommand;
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.AddTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.animal.AdmissionDate;
-import seedu.address.model.animal.Animal;
-import seedu.address.model.animal.Breed;
-import seedu.address.model.animal.DateOfBirth;
-import seedu.address.model.animal.Name;
-import seedu.address.model.animal.PetId;
-import seedu.address.model.animal.Sex;
-import seedu.address.model.animal.Species;
-
+import seedu.address.logic.parser.AnimalParserUtil.ParsedTaskInput;
+import seedu.address.model.animal.*;
 
 /**
- * Parses input arguments and creates a new AddCommand object
+ * Parses input arguments and creates a new AddTaskCommand object
  */
 public class AddTaskCommandParser implements AnimalParser<AddTaskCommand> {
-    public static final Prefix[] MANDATORY_PREFIXES = CliAnimalSyntax.getMandatoryPrefixes().toArray(Prefix[]::new);
 
     /**
-     * Parses the given {@code String} of arguments in the context of the AddCommand.
-     * and returns an AddCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the AddTaskCommand.
+     * and returns an AddTaskCommand object for execution.
      *
      * @throws ParseException if the user input does not conform to the expected format.
      */
-    public AddAnimalCommand parse(String args) throws ParseException {
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, MANDATORY_PREFIXES);
+    public AddTaskCommand parse(String args) throws ParseException {
 
-        if (!argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(AnimalMessages.MESSAGE_INVALID_PREAMBLE);
+        try {
+            ParsedTaskInput parsedTaskInput = AnimalParserUtil.parseTaskInput(args);
+            Index targetIndex = parsedTaskInput.getTargetIndex();
+            Task taskDescription = parsedTaskInput.getTaskDescription();
+
+            return new AddTaskCommand(targetIndex, taskDescription);
+        } catch (ParseException pe) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTaskCommand.MESSAGE_USAGE), pe);
         }
-
-        if (!ArgumentMultimap.arePrefixesPresent(argMultimap, MANDATORY_PREFIXES)) {
-            // Gets the prefix usage string.
-            List<String> missingPrefixesUsage = ArgumentMultimap.getMissingPrefixes(argMultimap, MANDATORY_PREFIXES)
-                    .stream()
-                    .map(CliAnimalSyntax::getCliSyntaxFromPrefix)
-                    .map(CliAnimalSyntax::getUsage)
-                    .collect(Collectors.toList());
-
-            throw new ParseException(getHelpMessage(missingPrefixesUsage));
-        }
-
-        // ParseException containing the duplicated prefixes separated by whitespace is thrown.
-        argMultimap.verifyNoDuplicatePrefixesFor(MANDATORY_PREFIXES);
-
-        // Optional::orElseThrow should never throw a NoSuchElementException given the checks done above.
-        Name name = AnimalParserUtil.parseName(argMultimap.getValue(NAME).orElseThrow());
-        PetId id = AnimalParserUtil.parsePetId(argMultimap.getValue(PET_ID).orElseThrow());
-        DateOfBirth dob = AnimalParserUtil.parseDateOfBirth(argMultimap.getValue(DATE_OF_BIRTH).orElseThrow());
-        AdmissionDate doa = AnimalParserUtil.parseAdmissionDate(argMultimap.getValue(DATE_OF_ADMISSION).orElseThrow());
-        Species species = AnimalParserUtil.parseSpecies(argMultimap.getValue(SPECIES).orElseThrow());
-        Sex sex = AnimalParserUtil.parseSex(argMultimap.getValue(SEX).orElseThrow());
-        Breed breed = AnimalParserUtil.parseBreed(argMultimap.getValue(BREED).orElseThrow());
-
-        Animal animal = new Animal(name, id, species, breed, sex, doa, dob);
-
-        return new AddAnimalCommand(animal);
-    }
-
-    /**
-     * Returns the formatted help message.
-     * Displays the following Help string:
-     *         Invalid Command:
-     *         Missing prefixes: n/ [NAME], i/ [PET_ID]
-     *         Example: add n/ Pookie ...
-     *
-     * @param missingPrefixesUsage the missing prefixes' usage string.
-     * @return a formatted help message consisting of the content specified above.
-     */
-    public static String getHelpMessage(List<String> missingPrefixesUsage) {
-        return AnimalMessages.getFormattedHelpMessage(
-                AnimalMessages.MESSAGE_INVALID_COMMAND,
-                String.format(AnimalMessages.MESSAGE_MISSING_PREFIXES_FORMAT, String.join(", ", missingPrefixesUsage)),
-                AddAnimalCommand.EXAMPLE_USAGE
-        );
     }
 }

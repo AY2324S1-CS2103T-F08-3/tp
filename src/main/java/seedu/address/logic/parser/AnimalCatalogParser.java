@@ -8,10 +8,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.logic.commands.AddAnimalCommand;
-import seedu.address.logic.commands.AnimalCommand;
-import seedu.address.logic.commands.DeleteAnimalCommand;
-import seedu.address.logic.commands.ListAnimalCommand;
+import seedu.address.logic.commands.*;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -56,17 +53,9 @@ public class AnimalCatalogParser {
 
         case DeleteAnimalCommand.COMMAND_WORD:
             return new DeleteAnimalCommandParser().parse(arguments);
-        //
-        //        case ClearAnimalCommand.COMMAND_WORD:
-        //            return new ClearCommand();
-        //
-        //        case ExitAnimalCommand.COMMAND_WORD:
-        //            return new ExitCommand();
-        //
-        //        case HelpAnimalCommand.COMMAND_WORD:
-        //            return new HelpCommand();
 
-
+        case AddTaskCommand.COMMAND_WORD:
+            return new AddTaskCommandParser().parse(arguments);
 
         default:
             logger.finer("This user input caused a ParseException: " + userInput);

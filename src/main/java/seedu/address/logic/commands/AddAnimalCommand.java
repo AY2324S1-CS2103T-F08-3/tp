@@ -15,6 +15,8 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AnimalModel;
 import seedu.address.model.animal.Animal;
 
+import java.util.Objects;
+
 /**
  * Adds a animal to the catalog.
  */
@@ -66,6 +68,11 @@ public class AddAnimalCommand extends AnimalCommand {
 
         model.addAnimal(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, AnimalMessages.format(toAdd)));
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(toAdd);
     }
 
     @Override
