@@ -6,6 +6,8 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.animal.Animal;
+import seedu.address.model.animal.Task;
+import seedu.address.model.animal.TaskList;
 
 
 /**
@@ -76,6 +78,8 @@ public interface AnimalModel {
      * The animal identity of {@code editedAnimal} must not be the same as another existing animal in the catalog.
      */
     void setAnimal(Animal target, Animal editedAnimal);
+
+    void addTask(Task newTask, Animal animal);
 
     /** Returns an unmodifiable view of the filtered animal list */
     ObservableList<Animal> getFilteredAnimalList();

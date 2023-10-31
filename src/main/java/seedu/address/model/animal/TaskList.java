@@ -27,6 +27,8 @@ public class TaskList {
         return this.taskList;
     }
 
+    public void addTask(Task task) { taskList.add(task); }
+
     /**
      * Checks if the taskList does not contain any tasks.
      *

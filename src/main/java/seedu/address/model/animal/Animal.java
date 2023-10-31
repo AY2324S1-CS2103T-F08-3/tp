@@ -104,6 +104,7 @@ public class Animal {
         return breed.toString();
     }
 
+    public void addTask(Task task) { taskList.addTask(task); }
 
     /**
      * Returns the string representation of this Animal.

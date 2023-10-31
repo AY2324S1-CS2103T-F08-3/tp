@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.animal.Animal;
+import seedu.address.model.animal.Task;
 
 /**
  * Represents the in-memory model of the AnimalCatalog Data
@@ -112,6 +113,13 @@ public class AnimalModelManager implements AnimalModel {
         requireAllNonNull(target, editedAnimal);
 
         animalCatalog.setAnimal(target, editedAnimal);
+    }
+
+    @Override
+    public void addTask(Task newTask, Animal animal) {
+        requireAllNonNull(newTask, animal);
+
+
     }
 
     //=========== Filtered Animal List Accessors =============================================================
