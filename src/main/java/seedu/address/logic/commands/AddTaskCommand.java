@@ -14,7 +14,7 @@ import seedu.address.model.animal.Task;
 import java.util.List;
 
 /**
- * Adds a animal to the catalog.
+ * Adds a task to the task list of an animal.
  */
 
 public class AddTaskCommand extends AnimalCommand {
