@@ -1,5 +1,6 @@
 package seedu.address.model.animal;
 
+import java.util.List;
 import java.util.Objects;
 
 import seedu.address.commons.util.ToStringBuilder;
@@ -72,6 +73,10 @@ public class Animal {
         return taskList;
     }
 
+    public List<Task> getTasks() {
+        return taskList.getTasks();
+    }
+
     // ----------------- These getter methods are used for JSON serialization by JsonAdaptedAnimal--------------
     // NOTE: For Animal attributes that simply stores a string as its underlying implementation, with its toString()
     // method returning the string as-is, toString() is called to use it for deserialization.
@@ -104,7 +109,9 @@ public class Animal {
         return breed.toString();
     }
 
-    public void addTask(Task task) { taskList.addTask(task); }
+    public void addTask(Task task) {
+        taskList.addTask(task);
+    }
 
     /**
      * Returns the string representation of this Animal.

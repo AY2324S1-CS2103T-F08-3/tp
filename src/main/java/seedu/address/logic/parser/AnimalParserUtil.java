@@ -2,14 +2,21 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
-import seedu.address.commons.core.index.Index;
-import seedu.address.commons.util.StringUtil;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.animal.*;
-
 import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import seedu.address.commons.core.index.Index;
+import seedu.address.commons.util.StringUtil;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.animal.AdmissionDate;
+import seedu.address.model.animal.Breed;
+import seedu.address.model.animal.DateOfBirth;
+import seedu.address.model.animal.Name;
+import seedu.address.model.animal.PetId;
+import seedu.address.model.animal.Sex;
+import seedu.address.model.animal.Species;
+import seedu.address.model.animal.Task;
 
 
 /**
@@ -140,12 +147,12 @@ public class AnimalParserUtil {
     /**
      * Parses the given {@code input} into a {@code ParsedTaskInput} object.
      * <p>
-     * The input is expected to be in the format: <index> <task description>,
-     * where <index> represents the target animal's position in the list (as a positive integer),
-     * and <task description> is a description of the task to be added.
+     * The input is expected to be in the format: index taskDescription,
+     * where index represents the target animal's position in the list (as a positive integer),
+     * and task description is a description of the task to be added.
      * </p>
      * <p>
-     * The method uses regular expressions to extract the <index> and <task description> parts
+     * The method uses regular expressions to extract the index and task description parts
      * and then constructs a {@code ParsedTaskInput} object.
      * </p>
      *
@@ -174,13 +181,18 @@ public class AnimalParserUtil {
     }
 
     /**
-     * Represents a parsed task input consisting of a target index and a task description.
-     * Guarantees: immutable; the target index and task description are present and not null.
+     * Represents the result of parsing the user input for adding a task.
      */
     public static class ParsedTaskInput {
         private final Index targetIndex;
         private final String taskDescription;
 
+        /**
+         * Constructs a {@code ParsedTaskInput} object with the given target index and task description.
+         *
+         * @param targetIndex    The target index of the animal to which the task is to be added.
+         * @param taskDescription The description of the task to be added.
+         */
         public ParsedTaskInput(Index targetIndex, String taskDescription) {
             this.targetIndex = targetIndex;
             this.taskDescription = taskDescription;

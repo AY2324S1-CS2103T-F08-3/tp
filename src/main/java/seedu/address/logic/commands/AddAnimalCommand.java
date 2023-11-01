@@ -9,13 +9,13 @@ import static seedu.address.logic.parser.CliAnimalSyntax.PET_ID;
 import static seedu.address.logic.parser.CliAnimalSyntax.SEX;
 import static seedu.address.logic.parser.CliAnimalSyntax.SPECIES;
 
+import java.util.Objects;
+
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.AnimalMessages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AnimalModel;
 import seedu.address.model.animal.Animal;
-
-import java.util.Objects;
 
 /**
  * Adds a animal to the catalog.
@@ -39,8 +39,8 @@ public class AddAnimalCommand extends AnimalCommand {
         + NAME.getPrefix() + "Pookie "
         + PET_ID.getPrefix() + "1234 "
         + SEX.getPrefix() + "MALE "
-        + DATE_OF_BIRTH.getPrefix() + "01/01/2019 "
-        + DATE_OF_ADMISSION.getPrefix() + "01/01/2019 "
+        + DATE_OF_BIRTH.getPrefix() + "2019-01-01 "
+        + DATE_OF_ADMISSION.getPrefix() + "2019-02-02 "
         + SPECIES.getPrefix() + "Dog "
         + BREED.getPrefix() + "Poodle";
 

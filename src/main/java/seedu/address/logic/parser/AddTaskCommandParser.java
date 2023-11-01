@@ -4,9 +4,9 @@ import static seedu.address.logic.AnimalMessages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddTaskCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.AnimalParserUtil.ParsedTaskInput;
-import seedu.address.model.animal.*;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.animal.Task;
 
 /**
  * Parses input arguments and creates a new AddTaskCommand object
@@ -20,7 +20,6 @@ public class AddTaskCommandParser implements AnimalParser<AddTaskCommand> {
      * @throws ParseException if the user input does not conform to the expected format.
      */
     public AddTaskCommand parse(String args) throws ParseException {
-
         try {
             ParsedTaskInput parsedTaskInput = AnimalParserUtil.parseTaskInput(args);
             Index targetIndex = parsedTaskInput.getTargetIndex();

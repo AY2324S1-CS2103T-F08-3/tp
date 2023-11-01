@@ -81,6 +81,9 @@ public class AnimalMessages {
         return builder.toString();
     }
 
+    /**
+     * Formats the {@code task} for display to the user.
+     */
     public static String format(Task task) {
         StringBuilder builder = new StringBuilder();
         builder.append(task.getDescription());

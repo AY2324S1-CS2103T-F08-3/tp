@@ -7,8 +7,6 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.animal.Animal;
 import seedu.address.model.animal.Task;
-import seedu.address.model.animal.TaskList;
-
 
 /**
  * The API of the Model component.

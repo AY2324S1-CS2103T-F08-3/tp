@@ -7,14 +7,13 @@ import seedu.address.logic.commands.DeleteAnimalCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new DeleteCommand object
+ * Parses input arguments and creates a new DeleteAnimalCommand object
  */
-// To implement Parser<DeleteAnimalCommand>
-public class DeleteAnimalCommandParser {
+public class DeleteAnimalCommandParser implements AnimalParser<DeleteAnimalCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the DeleteCommand
-     * and returns a DeleteCommand object for execution.
+     * and returns a DeleteAnimalCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public DeleteAnimalCommand parse(String args) throws ParseException {
