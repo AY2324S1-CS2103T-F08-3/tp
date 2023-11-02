@@ -80,7 +80,7 @@ public class PetIdTest {
 
     @Test
     void testEquals_withNull() {
-        assertNotEquals(null, validPetId);
+        assertNotEquals(validPetId, null);
     }
 
     @Test
@@ -91,7 +91,7 @@ public class PetIdTest {
 
     @Test
     public void testHashCode() {
-        assertEquals(validPetId, new PetId(VALID_NUMBER_INPUT));
+        assertEquals(validPetId.hashCode(), new PetId(VALID_NUMBER_INPUT).hashCode());
     }
 
 }

@@ -85,7 +85,7 @@ public class NameTest {
 
     @Test
     void testEquals_withNull() {
-        assertNotEquals(null, validName);
+        assertNotEquals(validName, null);
     }
 
     @Test
@@ -96,7 +96,7 @@ public class NameTest {
 
     @Test
     public void testHashCode() {
-        assertEquals(validName, new Name("Pookie"));
+        assertEquals(validName.hashCode(), new Name("Pookie").hashCode());
     }
 
 }

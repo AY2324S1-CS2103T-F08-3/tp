@@ -105,7 +105,7 @@ public class TaskTest {
 
     @Test
     void testEquals_withNull() {
-        assertNotEquals(null, incompleteTask);
+        assertNotEquals(incompleteTask, null);
     }
 
     @Test
@@ -116,7 +116,7 @@ public class TaskTest {
 
     @Test
     public void testHashCode() {
-        assertEquals(completeTask, incompleteTask);
+        assertEquals(completeTask.hashCode(), incompleteTask.hashCode());
     }
 
     @Test
