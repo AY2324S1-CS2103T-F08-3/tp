@@ -118,6 +118,7 @@
         "quick-start": "Quick start",
         "features": "Features",
         "entry-management": "Entry Management",
+        "program-usage-help-help": "Program usage help: help",
         "faq": "FAQ",
         "known-issues": "Known issues",
         "command-summary": "Command summary"
@@ -128,7 +129,7 @@
       "src": "index.md",
       "title": "",
       "headings": {
-        "addressbook-level-3": "AddressBook Level-3"
+        "pawfection": "Pawfection"
       },
       "headingKeywords": {}
     },
