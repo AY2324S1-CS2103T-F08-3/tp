@@ -116,7 +116,7 @@
       "src": "UserGuide.md",
       "title": "User Guide",
       "headings": {
-        "pawfection-user-guide": "PawFection User Guide",
+        "pawfection-user-guide": "Pawfection User Guide",
         "quick-start": "Quick start",
         "features": "Features",
         "adding-an-animal-add": "Adding an animal: add",
@@ -130,6 +130,7 @@
         "marking-a-task-as-done-mark": "Marking a task as done: mark",
         "unmarking-a-task-as-done-unmark": "Unmarking a task as done: unmark",
         "reset-all-tasks-reset": "Reset all tasks: reset",
+        "viewing-animal-details": "Viewing animal details",
         "saving-the-data": "Saving the data",
         "editing-the-data-file": "Editing the data file",
         "faq": "FAQ",
