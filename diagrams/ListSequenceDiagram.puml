@@ -16,7 +16,7 @@ end box
 [-> AnimalLogicManager : execute("list")
 activate AnimalLogicManager
 
-AnimalLogicManager -> AnimalCatalogParser : parseCommand("delete 1")
+AnimalLogicManager -> AnimalCatalogParser : parseCommand("list")
 activate AnimalCatalogParser
 
 create ListAnimalCommand
@@ -26,10 +26,10 @@ activate ListAnimalCommand
 ListAnimalCommand --> AnimalCatalogParser
 deactivate ListAnimalCommand
 
-AnimalCatalogParser --> AnimalLogicManager : l
+AnimalCatalogParser --> AnimalLogicManager :
 deactivate AnimalCatalogParser
 
-AnimalLogicManager -> ListAnimalCommand : execute()
+AnimalLogicManager -> ListAnimalCommand : execute(model)
 activate ListAnimalCommand
 
 ListAnimalCommand -> AnimalModel : updateFilteredAnimalList(unused -> true)

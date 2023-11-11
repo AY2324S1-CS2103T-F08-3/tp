@@ -1,0 +1,70 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":AnimalLogicManager" as AnimalLogicManager LOGIC_COLOR
+participant ":AnimalCatalogParser" as AnimalCatalogParser LOGIC_COLOR
+participant ":SearchAnimalCommandParser" as SearchAnimalCommandParser LOGIC_COLOR
+participant ":SearchAnimalCommand" as SearchAnimalCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box AnimalModel MODEL_COLOR_T1
+participant ":AnimalModel" as AnimalModel MODEL_COLOR
+end box
+
+[-> AnimalLogicManager : execute("search /n ...")
+activate AnimalLogicManager
+
+AnimalLogicManager -> AnimalCatalogParser : parseCommand("add /n ...")")
+activate AnimalCatalogParser
+
+create SearchAnimalCommandParser
+AnimalCatalogParser -> SearchAnimalCommandParser
+activate SearchAnimalCommandParser
+
+SearchAnimalCommandParser --> AnimalCatalogParser
+deactivate SearchAnimalCommandParser
+
+AnimalCatalogParser -> SearchAnimalCommandParser : parse("/n ...")")
+activate SearchAnimalCommandParser
+
+create SearchAnimalCommand
+SearchAnimalCommandParser -> SearchAnimalCommand
+activate SearchAnimalCommand
+
+SearchAnimalCommand --> SearchAnimalCommandParser
+deactivate SearchAnimalCommand
+
+SearchAnimalCommandParser --> AnimalCatalogParser
+deactivate SearchAnimalCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+SearchAnimalCommandParser -[hidden]-> AnimalCatalogParser
+destroy SearchAnimalCommandParser
+
+AnimalCatalogParser --> AnimalLogicManager
+deactivate AnimalCatalogParser
+
+AnimalLogicManager -> SearchAnimalCommand : execute(model)
+activate SearchAnimalCommand
+
+SearchAnimalCommand -> AnimalModel : updateFilteredAnimalList(predicate)
+activate AnimalModel
+
+AnimalModel --> SearchAnimalCommand
+deactivate AnimalModel
+
+create CommandResult
+SearchAnimalCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> SearchAnimalCommand
+deactivate CommandResult
+
+SearchAnimalCommand --> AnimalLogicManager : result
+deactivate SearchAnimalCommand
+
+[<--AnimalLogicManager
+deactivate AnimalLogicManager
+@enduml
