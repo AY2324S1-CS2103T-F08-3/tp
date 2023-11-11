@@ -70,7 +70,9 @@
         "glossary": "Glossary",
         "appendix-instructions-for-manual-testing": "Appendix: Instructions for manual testing",
         "launch-and-shutdown": "Launch and shutdown",
-        "saving-data": "Saving data"
+        "saving-data": "Saving data",
+        "appendix-planned-enhancements": "Appendix: Planned Enhancements",
+        "planned-enhancements": "Planned Enhancements"
       },
       "headingKeywords": {}
     },
@@ -130,7 +132,6 @@
         "reset-all-tasks-reset": "Reset all tasks: reset",
         "saving-the-data": "Saving the data",
         "editing-the-data-file": "Editing the data file",
-        "planned-enhancements": "Planned Enhancements",
         "faq": "FAQ",
         "known-issues": "Known issues",
         "command-summary": "Command summary"
