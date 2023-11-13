@@ -3,10 +3,7 @@
 skinparam ArrowFontStyle plain
 
 box Logic LOGIC_COLOR_T1
-participant ":AnimalLogicManager" as AnimalLogicManager LOGIC_COLOR
-participant ":AnimalCatalogParser" as AnimalCatalogParser LOGIC_COLOR
 participant ":ResetTaskCommand" as ResetTaskCommand LOGIC_COLOR
-participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
 box AnimalModel MODEL_COLOR_T1
@@ -18,24 +15,7 @@ participant "taskList:TaskList" as TaskList MODEL_COLOR
 participant "task:Task" as Task MODEL_COLOR
 end box
 
-[-> AnimalLogicManager : execute("list")
-activate AnimalLogicManager
-
-AnimalLogicManager -> AnimalCatalogParser : parseCommand("reset")
-activate AnimalCatalogParser
-
-create ResetTaskCommand
-AnimalCatalogParser -> ResetTaskCommand
-activate ResetTaskCommand
-
-ResetTaskCommand --> AnimalCatalogParser
-deactivate ResetTaskCommand
-
-AnimalCatalogParser --> AnimalLogicManager :
-deactivate AnimalCatalogParser
-
-AnimalLogicManager -> ResetTaskCommand : execute(model)
-activate ResetTaskCommand
+mainframe: **sd** reset tasks
 
 ResetTaskCommand -> AnimalModel : resetTasks()
 activate AnimalModel
@@ -73,25 +53,7 @@ deactivate UniqueAnimalList
 AnimalCatalog --> AnimalModel
 deactivate AnimalCatalog
 
-AnimalModel -> AnimalModel : updateFilteredAnimalList(unused -> true)
-activate AnimalModel
-
-AnimalModel --> AnimalModel
-deactivate AnimalModel
-
 AnimalModel --> ResetTaskCommand
 deactivate AnimalModel
 
-create CommandResult
-ResetTaskCommand -> CommandResult
-activate CommandResult
-
-CommandResult --> ResetTaskCommand
-deactivate CommandResult
-
-ResetTaskCommand --> AnimalLogicManager : result
-deactivate ResetTaskCommand
-
-[<--AnimalLogicManager
-deactivate AnimalLogicManager
 @enduml

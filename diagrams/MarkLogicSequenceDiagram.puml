@@ -12,9 +12,6 @@ end box
 
 box AnimalModel MODEL_COLOR_T1
 participant ":AnimalModel" as AnimalModel MODEL_COLOR
-participant ":Animal" as Animal MODEL_COLOR
-participant ":TaskList" as TaskList MODEL_COLOR
-participant ":Task" as Task MODEL_COLOR
 end box
 
 [-> AnimalLogicManager : execute("mark 1 1")
@@ -58,44 +55,7 @@ activate AnimalModel
 AnimalModel --> MarkTaskCommand
 deactivate AnimalModel
 
-MarkTaskCommand -> AnimalModel : updateTask(animalToMark, [1], true)
-activate AnimalModel
-
-AnimalModel -> Animal : updateTask([1], true)
-activate Animal
-
-Animal -> TaskList : updateTaskList([1], true)
-activate TaskList
-
-loop for each task index
-    TaskList -> Task : updateTask(true)
-    activate Task
-
-    Task --> TaskList
-    deactivate Task
-
-end
-
-TaskList --> Animal
-deactivate TaskList
-
-Animal --> AnimalModel : updatedAnimal
-deactivate Animal
-
-AnimalModel -> AnimalModel : setAnimal(animalToMark, updatedAnimal)
-activate AnimalModel
-
-AnimalModel --> AnimalModel
-deactivate AnimalModel
-
-AnimalModel -> AnimalModel : updateFilteredAnimalList(unused -> true)
-activate AnimalModel
-
-AnimalModel --> AnimalModel
-deactivate AnimalModel
-
-AnimalModel --> MarkTaskCommand
-deactivate AnimalModel
+ref over MarkTaskCommand, AnimalModel : update tasks
 
 create CommandResult
 MarkTaskCommand -> CommandResult

@@ -1,0 +1,46 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":MarkTaskCommand" as MarkTaskCommand LOGIC_COLOR
+end box
+
+box AnimalModel MODEL_COLOR_T1
+participant ":AnimalModel" as AnimalModel MODEL_COLOR
+participant ":Animal" as Animal MODEL_COLOR
+participant ":TaskList" as TaskList MODEL_COLOR
+participant ":Task" as Task MODEL_COLOR
+end box
+
+mainframe **sd** update tasks
+
+MarkTaskCommand -> AnimalModel : updateTask(animalToMark, [1], true)
+activate AnimalModel
+
+AnimalModel -> Animal : updateTask([1], true)
+activate Animal
+
+Animal -> TaskList : updateTaskList([1], true)
+activate TaskList
+
+loop for each task index
+    TaskList -> Task : updateTask(true)
+    activate Task
+
+    Task --> TaskList
+    deactivate Task
+
+end
+
+TaskList --> Animal
+deactivate TaskList
+
+Animal --> AnimalModel : updatedAnimal
+deactivate Animal
+
+
+AnimalModel --> MarkTaskCommand
+deactivate AnimalModel
+
+@enduml

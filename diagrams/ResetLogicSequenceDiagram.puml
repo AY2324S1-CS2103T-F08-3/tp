@@ -1,0 +1,49 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":AnimalLogicManager" as AnimalLogicManager LOGIC_COLOR
+participant ":AnimalCatalogParser" as AnimalCatalogParser LOGIC_COLOR
+participant ":ResetTaskCommand" as ResetTaskCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box AnimalModel MODEL_COLOR_T1
+participant "model:AnimalModel" as AnimalModel MODEL_COLOR
+end box
+
+[-> AnimalLogicManager : execute("list")
+activate AnimalLogicManager
+
+AnimalLogicManager -> AnimalCatalogParser : parseCommand("reset")
+activate AnimalCatalogParser
+
+create ResetTaskCommand
+AnimalCatalogParser -> ResetTaskCommand
+activate ResetTaskCommand
+
+ResetTaskCommand --> AnimalCatalogParser
+deactivate ResetTaskCommand
+
+AnimalCatalogParser --> AnimalLogicManager :
+deactivate AnimalCatalogParser
+
+AnimalLogicManager -> ResetTaskCommand : execute(model)
+activate ResetTaskCommand
+
+ref over AnimalModel, ResetTaskCommand : reset tasks
+
+create CommandResult
+ResetTaskCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> ResetTaskCommand
+deactivate CommandResult
+
+ResetTaskCommand --> AnimalLogicManager : result
+deactivate ResetTaskCommand
+
+[<--AnimalLogicManager
+deactivate AnimalLogicManager
+@enduml

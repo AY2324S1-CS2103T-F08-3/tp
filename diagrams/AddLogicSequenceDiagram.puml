@@ -49,11 +49,7 @@ deactivate AnimalCatalogParser
 AnimalLogicManager -> AddAnimalCommand : execute(model)
 activate AddAnimalCommand
 
-AddAnimalCommand -> AnimalModel : addAnimal(animal)
-activate AnimalModel
-
-AnimalModel --> AddAnimalCommand
-deactivate AnimalModel
+ref over AddAnimalCommand, AnimalModel : add animal
 
 create CommandResult
 AddAnimalCommand -> CommandResult
