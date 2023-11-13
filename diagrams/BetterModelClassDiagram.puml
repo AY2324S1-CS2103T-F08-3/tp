@@ -20,4 +20,6 @@ Animal *--> Breed
 Animal *--> Sex
 Animal *--> DateOfBirth
 Animal *--> AdmissionDate
+Animal *--> TaskList
+TaskList --> "*"Task
 @enduml

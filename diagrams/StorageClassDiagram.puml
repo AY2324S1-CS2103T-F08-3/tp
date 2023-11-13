@@ -15,10 +15,11 @@ package Storage as StoragePackage {
     Class AnimalStorageManager
 
     package "AnimalCatalog Storage" #F4F6F6{
-        Class "<<interface>>\AnimalCatalogStorage" as AnimalCatalogStorage
+        Class "<<interface>> AnimalCatalogStorage" as AnimalCatalogStorage
         Class JsonAnimalCatalogStorage
         Class JsonSerializableAnimalCatalog
         Class JsonAdaptedAnimal
+        Class JsonAdaptedTask
     }
 }
 
@@ -36,5 +37,6 @@ JsonAnimalUserPrefsStorage .up.|> UserPrefsStorage
 JsonAnimalCatalogStorage .up.|> AnimalCatalogStorage
 JsonAnimalCatalogStorage ..> JsonSerializableAnimalCatalog
 JsonSerializableAnimalCatalog --> "*" JsonAdaptedAnimal
+JsonAdaptedAnimal --> "*" JsonAdaptedTask
 
 @enduml

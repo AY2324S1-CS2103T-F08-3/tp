@@ -21,6 +21,8 @@ Class Breed
 Class Sex
 Class DateOfBirth
 Class AdmissionDate
+Class TaskList
+Class Task
 
 Class I #FFFFFF
 }
@@ -46,6 +48,8 @@ Animal *--> PetId
 Animal *--> Sex
 Animal *--> DateOfBirth
 Animal *--> AdmissionDate
+Animal *--> TaskList
+TaskList --> "*" Task
 
 Animal -[hidden]up--> I
 UniqueAnimalList -[hidden]right-> I

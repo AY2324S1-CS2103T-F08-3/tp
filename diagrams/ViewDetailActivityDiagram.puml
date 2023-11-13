@@ -1,0 +1,10 @@
+@startuml
+start
+:User accesses address book;
+    if () then (Click on animal cell)
+    else (Input animal-specific command)
+        :Process animal-specific command;
+    endif
+:Display animal details;
+stop
+@enduml

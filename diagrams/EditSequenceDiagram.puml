@@ -5,8 +5,8 @@ skinparam ArrowFontStyle plain
 box Logic LOGIC_COLOR_T1
 participant ":AnimalLogicManager" as AnimalLogicManager LOGIC_COLOR
 participant ":AnimalCatalogParser" as AnimalCatalogParser LOGIC_COLOR
-participant ":AddAnimalCommandParser" as AddAnimalCommandParser LOGIC_COLOR
-participant ":AddAnimalCommand" as AddAnimalCommand LOGIC_COLOR
+participant ":EditAnimalCommandParser" as AddAnimalCommandParser LOGIC_COLOR
+participant ":EditAnimalCommand" as AddAnimalCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
@@ -14,10 +14,10 @@ box AnimalModel MODEL_COLOR_T1
 participant ":AnimalModel" as AnimalModel MODEL_COLOR
 end box
 
-[-> AnimalLogicManager : execute("add n/ ...")
+[-> AnimalLogicManager : execute("edit 1 n/ ...")
 activate AnimalLogicManager
 
-AnimalLogicManager -> AnimalCatalogParser : parseCommand("add n/ ...")")
+AnimalLogicManager -> AnimalCatalogParser : parseCommand("edit 1 n/ ...")")
 activate AnimalCatalogParser
 
 create AddAnimalCommandParser
@@ -27,7 +27,7 @@ activate AddAnimalCommandParser
 AddAnimalCommandParser --> AnimalCatalogParser
 deactivate AddAnimalCommandParser
 
-AnimalCatalogParser -> AddAnimalCommandParser : parse("n/ ...")")
+AnimalCatalogParser -> AddAnimalCommandParser : parse("1 n/ ...")")
 activate AddAnimalCommandParser
 
 create AddAnimalCommand
@@ -49,7 +49,7 @@ deactivate AnimalCatalogParser
 AnimalLogicManager -> AddAnimalCommand : execute(model)
 activate AddAnimalCommand
 
-AddAnimalCommand -> AnimalModel : addAnimal(animal)
+AddAnimalCommand -> AnimalModel : editAnimal(animal)
 activate AnimalModel
 
 AnimalModel --> AddAnimalCommand
