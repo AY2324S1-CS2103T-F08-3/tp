@@ -1,0 +1,24 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+start
+:User executes help command;
+
+:Parse command;
+
+if (Argument provided?) then (yes)
+    :Search in CommandEnum for match(es);
+    if (Match(es) found?) then (yes)
+        :Return specific command(s) help message;
+    else (no)
+        :Return unrecognized command message;
+    endif
+else (no)
+    :Return general help message and\n open help window pop-up with link to UserGuide;
+endif
+
+:Generate CommandResult with corresponding help message;
+
+stop
+@enduml
