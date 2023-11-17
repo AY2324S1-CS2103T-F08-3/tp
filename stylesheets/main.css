@@ -19,6 +19,10 @@ mark {
     text-align: center;
 }
 
+hr {
+    margin-bottom: 40px;
+}
+
 /* Scrollbar */
 
 .slim-scroll::-webkit-scrollbar {
